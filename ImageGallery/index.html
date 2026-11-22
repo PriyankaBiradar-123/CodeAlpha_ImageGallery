@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Explore a beautiful collection of nature, travel, architecture and wildlife photography.">
-    <title>Lensora | Photography Gallery</title>
+    <meta name="description" content="A visual field journal of remarkable landscapes, places, wildlife and architecture.">
+    <meta name="theme-color" content="#f3f2ec">
+    <title>Lensora — A Visual Field Journal</title>
 
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,7 +18,7 @@
 
     <!-- Navigation -->
     <header class="navbar">
-        <a href="#" class="logo">LENS<span>ORA.</span></a>
+        <a href="#home" class="logo" aria-label="Lensora home">LENS<span>ORA</span><i>.</i></a>
 
         <nav>
             <a href="#home">Home</a>
@@ -25,35 +26,38 @@
             <a href="#about">About</a>
         </nav>
 
-        <a href="#gallery" class="nav-button">Explore Photos ↗</a>
+        <a href="#gallery" class="nav-button">View the collection <span aria-hidden="true">↗</span></a>
     </header>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
-            <p class="eyebrow">THE ART OF VISUAL STORYTELLING</p>
+            <p class="eyebrow"><span></span> A VISUAL FIELD JOURNAL · EST. 2026</p>
 
-            <h1>Every picture<br>tells a <span>story.</span></h1>
+            <h1>See the world<br>in a <span>different light.</span></h1>
 
             <p class="hero-description">
-                Discover beautiful moments captured through the lens.
-                A curated collection of nature, travel, architecture and wildlife.
+                A collection of places that stay with you. Landscapes, quiet streets
+                and untamed moments, gathered one frame at a time.
             </p>
 
             <a href="#gallery" class="explore-button">
-                Explore Gallery <span>→</span>
+                Explore the archive <span aria-hidden="true">↘</span>
             </a>
+            <p class="hero-note"><span>20</span> photographs <b>·</b> 4 collections</p>
         </div>
 
         <div class="hero-image">
             <img
-                src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=1000"
-                alt="Beautiful mountain landscape"
+                src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1800&q=88"
+                alt="A mountain lake reflecting the peaks at golden hour"
+                fetchpriority="high"
             >
             <div class="image-caption">
-                <span>01 / FEATURED COLLECTION</span>
-                <span>Nature & Landscapes</span>
+                <span><b>FIELD NOTE 001</b><br>Dolomites, Italy</span>
+                <span>46° 24' N&nbsp; / &nbsp;11° 50' E</span>
             </div>
+            <span class="hero-image-index" aria-hidden="true">01<span> / 04</span></span>
         </div>
     </section>
 
@@ -62,19 +66,19 @@
 
         <div class="section-heading">
             <div>
-                <p class="eyebrow">VISUAL COLLECTION</p>
-                <h2>Explore the <span>Gallery</span></h2>
+                <p class="eyebrow"><span></span> THE PHOTO ARCHIVE</p>
+                <h2>Collected <span>moments.</span></h2>
             </div>
 
             <p class="gallery-description">
-                A collection of moments, places and perspectives.
+                A little wonder, wherever you look.
             </p>
         </div>
 
         <!-- Search -->
         <div class="gallery-tools">
             <div class="search-box">
-                <span>⌕</span>
+                <span aria-hidden="true">⌕</span>
                 <input
                     type="search"
                     id="searchInput"
@@ -88,11 +92,11 @@
 
         <!-- Category Filters -->
         <div class="filter-buttons" id="filterButtons">
-            <button class="filter-btn active" data-category="all">All Photos</button>
-            <button class="filter-btn" data-category="nature">Nature</button>
-            <button class="filter-btn" data-category="travel">Travel</button>
-            <button class="filter-btn" data-category="architecture">Architecture</button>
-            <button class="filter-btn" data-category="wildlife">Wildlife</button>
+            <button class="filter-btn active" data-category="all" aria-pressed="true">All frames</button>
+            <button class="filter-btn" data-category="nature" aria-pressed="false">Nature</button>
+            <button class="filter-btn" data-category="travel" aria-pressed="false">Travel</button>
+            <button class="filter-btn" data-category="architecture" aria-pressed="false">Architecture</button>
+            <button class="filter-btn" data-category="wildlife" aria-pressed="false">Wildlife</button>
         </div>
 
         <!-- Images will be generated by JavaScript -->
@@ -106,19 +110,20 @@
 
     <!-- About Section -->
     <section class="about-section" id="about">
-        <p class="eyebrow">ABOUT THE COLLECTION</p>
-        <h2>Photography is the art of <span>freezing time.</span></h2>
+        <p class="eyebrow"><span></span> WHY WE LOOK</p>
+        <h2>The world moves fast.<br><span>Stay for the details.</span></h2>
         <p>
-            Lensora is a visual space dedicated to discovering the beauty
-            of everyday moments, extraordinary destinations and nature.
+            Lensora is an independent visual journal about the feeling of being
+            somewhere new, and the small details that make a place unforgettable.
         </p>
+        <a href="#gallery" class="about-link">Wander through the archive <span aria-hidden="true">↗</span></a>
     </section>
 
     <!-- Footer -->
     <footer>
-        <a href="#" class="logo">LENS<span>ORA.</span></a>
-        <p>© 2026 Lensora Photography Gallery. All rights reserved.</p>
-        <a href="#home">Back to top ↑</a>
+        <a href="#home" class="logo" aria-label="Lensora home">LENS<span>ORA</span><i>.</i></a>
+        <p>© 2026 LENSORA FIELD JOURNAL</p>
+        <a href="#home">Back to the beginning ↑</a>
     </footer>
 
     <!-- Lightbox -->

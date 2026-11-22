@@ -159,7 +159,7 @@ function displayImages() {
 
     // Update image count
     imageCount.textContent =
-        `${visibleImages.length} photographs`;
+        `${visibleImages.length} photograph${visibleImages.length === 1 ? "" : "s"}`;
 
     // Show message if no images match
     noResults.hidden = visibleImages.length !== 0;
@@ -169,6 +169,9 @@ function displayImages() {
 
         const card = document.createElement("div");
         card.className = "gallery-card";
+        card.setAttribute("role", "button");
+        card.setAttribute("tabindex", "0");
+        card.setAttribute("aria-label", `Open photograph: ${image.title}`);
 
         const img = document.createElement("img");
         img.src = image.image;
@@ -195,6 +198,13 @@ function displayImages() {
             openLightbox(index);
         });
 
+        card.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                openLightbox(index);
+            }
+        });
+
         galleryGrid.appendChild(card);
     });
 }
@@ -213,6 +223,9 @@ filterButtons.forEach((button) => {
 
         // Activate selected button
         button.classList.add("active");
+        filterButtons.forEach((filterButton) => {
+            filterButton.setAttribute("aria-pressed", String(filterButton === button));
+        });
 
         // Get selected category
         activeCategory = button.dataset.category;
