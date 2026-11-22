@@ -105,6 +105,86 @@ const images = [
         title: "Into the Wild",
         category: "wildlife",
         image: "https://images.unsplash.com/photo-1549366021-9f761d450615?w=900"
+    },
+    {
+        title: "Sunday Brunch",
+        category: "food",
+        image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1200&q=85"
+    },
+    {
+        title: "A Table for Two",
+        category: "food",
+        image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=85"
+    },
+    {
+        title: "Market Fresh",
+        category: "food",
+        image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1200&q=85"
+    },
+    {
+        title: "Flame & Flavor",
+        category: "food",
+        image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1200&q=85"
+    },
+    {
+        title: "Taj at First Light",
+        category: "india",
+        image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1200&q=85"
+    },
+    {
+        title: "Varanasi Morning",
+        category: "india",
+        image: "https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=1200&q=85"
+    },
+    {
+        title: "Jaipur in Color",
+        category: "india",
+        image: "https://images.unsplash.com/photo-1599661046827-dacff0c0f09a?auto=format&fit=crop&w=1200&q=85"
+    },
+    {
+        title: "Old City Passage",
+        category: "india",
+        image: "https://images.unsplash.com/photo-1514222134-b57cbb8ce073?auto=format&fit=crop&w=1200&q=85"
+    },
+    {
+        title: "Open Road",
+        category: "bikes",
+        image: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1200&q=85"
+    },
+    {
+        title: "Chrome & Craft",
+        category: "bikes",
+        image: "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=1200&q=85"
+    },
+    {
+        title: "Built to Roam",
+        category: "bikes",
+        image: "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=1200&q=85"
+    },
+    {
+        title: "City Pedal",
+        category: "bikes",
+        image: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=1200&q=85"
+    },
+    {
+        title: "Festival Lights",
+        category: "culture",
+        image: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=1200&q=85"
+    },
+    {
+        title: "The Crowd Sings",
+        category: "culture",
+        image: "https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=1200&q=85"
+    },
+    {
+        title: "After the Encore",
+        category: "culture",
+        image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1200&q=85"
+    },
+    {
+        title: "A Night Together",
+        category: "culture",
+        image: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=1200&q=85"
     }
 ];
 
@@ -116,6 +196,8 @@ const filterButtons = document.querySelectorAll(".filter-btn");
 const searchInput = document.getElementById("searchInput");
 const imageCount = document.getElementById("imageCount");
 const noResults = document.getElementById("noResults");
+const totalPhotoCount = document.getElementById("totalPhotoCount");
+const collectionCount = document.getElementById("collectionCount");
 
 const lightbox = document.getElementById("lightbox");
 const lightboxImage = document.getElementById("lightboxImage");
@@ -134,6 +216,16 @@ let activeCategory = "all";
 let searchText = "";
 let visibleImages = [];
 let currentIndex = 0;
+const categoryLabels = {
+    nature: "Nature",
+    travel: "Travel",
+    architecture: "Architecture",
+    wildlife: "Wildlife",
+    food: "Food",
+    india: "India Streets",
+    bikes: "Bikes",
+    culture: "Culture"
+};
 
 
 // 4. DISPLAY IMAGES
@@ -149,7 +241,7 @@ function displayImages() {
 
         const matchesSearch =
             image.title.toLowerCase().includes(searchText) ||
-            image.category.toLowerCase().includes(searchText);
+            categoryLabels[image.category].toLowerCase().includes(searchText);
 
         return matchesCategory && matchesSearch;
     });
@@ -160,12 +252,15 @@ function displayImages() {
     // Update image count
     imageCount.textContent =
         `${visibleImages.length} photograph${visibleImages.length === 1 ? "" : "s"}`;
+    totalPhotoCount.textContent = images.length;
+    collectionCount.textContent = new Set(images.map((image) => image.category)).size;
 
     // Show message if no images match
     noResults.hidden = visibleImages.length !== 0;
 
     // Create gallery cards
     visibleImages.forEach((image, index) => {
+        const categoryLabel = categoryLabels[image.category];
 
         const card = document.createElement("div");
         card.className = "gallery-card";
@@ -185,7 +280,7 @@ function displayImages() {
         title.textContent = image.title;
 
         const category = document.createElement("p");
-        category.textContent = image.category;
+        category.textContent = categoryLabel;
 
         info.appendChild(title);
         info.appendChild(category);
@@ -279,7 +374,7 @@ function updateLightbox() {
     lightboxTitle.textContent = image.title;
 
     lightboxCategory.textContent =
-        image.category.toUpperCase();
+        categoryLabels[image.category].toUpperCase();
 
     lightboxCounter.textContent =
         `${currentIndex + 1} / ${visibleImages.length}`;
