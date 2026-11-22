@@ -1,6 +1,6 @@
 
 // ===================================
-// LENSORA - IMAGE GALLERY
+// BEAUTY ∞ - IMAGE GALLERY
 // ===================================
 
 // 1. IMAGE COLLECTION
@@ -373,4 +373,4 @@ document.addEventListener("keydown", (event) => {
 
 displayImages();
 
-console.log("Lensora Image Gallery Loaded Successfully!");
+console.log("Beauty ∞ Image Gallery Loaded Successfully!");
